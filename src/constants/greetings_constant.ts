@@ -1,0 +1,15 @@
+export const EMOJI_VALUES: Record<string, string> = {
+  fireCape:'<:Fire_cape:1281502411915132968>',
+  neitz:'<:Helm_of_neitiznot:1281502399743262752>',
+  torso:'<:Fighter_torso:1281502387927912478>',
+  zombieAxe:'<:zombieAxe:1281502345993257021>',
+  dDefender:'<:ddefender:1281502310865961033>',
+  bring:'<:bring:1281495692849709096>',
+  ava:'<:Avas_accumulator:1281502438540447784>',
+  blackDhide:'<:Black_dhide_body:1281502453228900454>',
+  glory:'<:Amulet_of_glory4:1281502425022468117>',
+  runePouch:'<:Rune_pouch:1281502489316823071>',
+  iban:'<:Ibans_staff:1281502515984072704>',
+  godCape:'<:godcape:1281502502230954064>',
+  mystic:'<:mystic:1281502267706703914>',
+};
