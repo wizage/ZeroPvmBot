@@ -177,7 +177,9 @@ export abstract class ClueSlash {
       await approveThread.send({ files: fileArray });
     }
     await user?.send({ content: `You have been approved for ${roleLabel} by <@${interaction.user.id}>` });
-    return interaction.followUp({ content: `Role ${roleLabel} added to ${user!.displayName}`, ephemeral: true });
+    await interaction.followUp({ content: `Role ${roleLabel} added to ${user!.displayName}`, ephemeral: true });
+    await interaction.channel?.delete();
+    return;
   }
 
   private async addRole(interaction: StringSelectMenuInteraction, user: GuildMember, roleName: string) {
