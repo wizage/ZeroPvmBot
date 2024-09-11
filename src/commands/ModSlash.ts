@@ -2,15 +2,16 @@
 import { ActionRowBuilder, CommandInteraction, ModalBuilder, PermissionFlagsBits, TextInputBuilder, TextInputStyle, TextChannel, ModalSubmitInteraction, EmbedBuilder, ButtonBuilder, MessageActionRowComponentBuilder, ButtonInteraction, ChannelType, PermissionsBitField, User, StringSelectMenuBuilder, StringSelectMenuInteraction, Role, GuildMemberRoleManager, GuildMember, AttachmentBuilder, ThreadAutoArchiveDuration } from 'discord.js';
 import { Discord, Slash, SlashOption, SlashGroup, ModalComponent, ButtonComponent, SelectMenuComponent } from 'discordx';
 import { ApplicationCommandOptionType } from 'discord-api-types/v10';
-import { EMOJI_VALUES, EMOJI_VALUES_PROD } from '../constants/greetings_constant.js';
 import { Readable } from 'stream';
 import { Archive } from '../types/Mod.js';
+import { recruitFields, megaFields, memberFields, experiencedFields, colossalFields } from '../constants/Embeds.js';
 
 const rolesAvailable = [
-  { label: 'Entry', value: 'entry' },
-  { label: 'Learning to Raid', value: 'earlyraid' },
-  { label: 'Experienced Raider', value: 'raider' },
-  { label: 'First Mega Rare', value: 'megahunter' },
+  { label: 'Recruit', value: 'recruit' },
+  { label: 'Member', value: 'member' },
+  { label: 'Experienced Member', value: 'experienced' },
+  { label: 'Mega Member', value: 'mega' },
+  { label: 'Colossal member', value: 'colossal' },
 ];
 
 const adminBits = PermissionFlagsBits.KickMembers;
@@ -42,16 +43,23 @@ export abstract class ClueSlash {
   }
 
   @ButtonComponent({ id:/(ticket-*)\S+/ })
-  async ticketCreate(interaction: ButtonInteraction): Promise<void> {
+  async ticketOptions(interaction: ButtonInteraction): Promise<void> {
+    const megu = new StringSelectMenuBuilder()
+      .addOptions(rolesAvailable)
+      .setCustomId(`roleselect-${interaction.user.id}`);
+    const buttonRow = new ActionRowBuilder<MessageActionRowComponentBuilder>().addComponents(megu);
+    interaction.reply({ content: 'Select which role you are applying for:', components: [buttonRow], ephemeral: true });
+  }
+
+  @SelectMenuComponent({ id:/(roleselect-*)\S+/ })
+  async ticketCreate(interaction: StringSelectMenuInteraction): Promise<void> {
     await interaction.deferUpdate();
     let guild = await interaction.guild?.fetch();
-    const type = interaction.customId.split('-')[1];
+    const type = interaction.values?.[0];
     const user = interaction.user;
-    let emojis = EMOJI_VALUES;
     let parentCategory = '';
     let leadershipRole = '';
     if (guild!.id == '1230517503554486362') {
-      emojis = EMOJI_VALUES_PROD;
       parentCategory = '1230517505815216260';
       leadershipRole = '1230517503772590110';
     } else if (guild!.id == '1281481181828747318') {// Test server
@@ -60,7 +68,7 @@ export abstract class ClueSlash {
     }
 
     const newChannel = await guild?.channels.create({
-      name: `${user.username}-${type}`,
+      name: `${user.username}-application`,
       type: ChannelType.GuildText,
       parent: parentCategory,
       permissionOverwrites:
@@ -81,34 +89,25 @@ export abstract class ClueSlash {
       ],
       // your permission overwrites or other options here
     });
+    let fields = recruitFields;
+    if (type == 'recruit') {
+      fields = recruitFields;
+    } else if (type == 'member') {
+      fields = memberFields;
+    } else if (type == 'experienced') {
+      fields = experiencedFields;
+    } else if (type == 'mega') {
+      fields = megaFields;
+    } else if (type == 'colossal') {
+      fields = colossalFields;
+    }
+    
 
     const ticket = new EmbedBuilder()
       .setTitle(`**Application for ${user.username}**`)
-      .setDescription(`Hello <@${user.id}>! Please review the requirments below and upload a screenshot of your skills and gear! \n \n__Requirements__:`)
-      .addFields([
-        { name:'Skills', value:`
-          ⬥ Lvl 60+ ${emojis.defence} ${emojis.attack} ${emojis.strength} ${emojis.range} ${emojis.magic} ${emojis.prayer} ${emojis.hitpoints}
-          ⬥ Lvl 52+ ${emojis.herblore}` },
-        { name:'Magic', value:`
-        ⬥ ${emojis.mystic} Mystic Set
-        ⬥ ${emojis.iban} Iban's Staff
-        ⬥ ${emojis.godCape} God Cape
-        ⬥ ${emojis.runePouch} Rune Pouch` },
-        { name:'Range Gear', value:`
-        ⬥ ${emojis.blackDhide} Black D'hide Set
-        ⬥ ${emojis.rcbow} Rune Crossbow
-        ⬥ ${emojis.ava} Ava's Accumulator
-        ⬥ ${emojis.blackDhide} Blessed/Black D'Hide
-        ⬥ ${emojis.glory} Amulet of Glory` },
-        { name:'Melee Gear', value:`
-        ⬥ ${emojis.fireCape} Fire Cape
-        ⬥ ${emojis.neitz} Helm of Neitiznot
-        ⬥ ${emojis.torso} Fighter Torso
-        ⬥ ${emojis.zombieAxe} Zombie Axe
-        ⬥ ${emojis.dDefender} Dragon Defender
-        ⬥ ${emojis.bring} Berserker's Ring` },
-      ]);
-    newChannel!.send({ embeds: [ticket] });
+      .setDescription(`Hello <@${user.id}>! Please review the requirements below and upload a screenshot of your skills and gear! \n \n__Requirements__:`)
+      .addFields(fields);
+    await newChannel!.send({ embeds: [ticket] });
   }
 
   @Slash({ name: 'setup-app-channel', description: 'Setup Application Channel' })
@@ -324,5 +323,40 @@ export abstract class ClueSlash {
       interaction.showModal(modal);
     }
     
+  }
+
+  @Slash({ name: 'requirements-update', description: 'Write the requirements to a channel' })
+  @SlashGroup('mod')
+  async setupRequirements(
+    @SlashOption({
+      description: 'Provide the channel',
+      name: 'channel',
+      required: true,
+      type: ApplicationCommandOptionType.Channel,
+    })
+    channel: TextChannel,
+    interaction: CommandInteraction,
+  ) {
+    const recruit = new EmbedBuilder()
+      .setTitle('**Recruit Requirements**')
+      .addFields(recruitFields);
+    const member = new EmbedBuilder()
+      .setTitle('**Member Requirements**')
+      .addFields(memberFields);
+    const experienced = new EmbedBuilder()
+      .setTitle('**Experienced Member Requirements**')
+      .addFields(experiencedFields);
+    const mega = new EmbedBuilder()
+      .setTitle('**Mega Member Requirements**')
+      .addFields(megaFields);
+    const colossal = new EmbedBuilder()
+      .setTitle('**Colossal Member Requirements**')
+      .addFields(colossalFields);
+    channel.send({ embeds: [recruit] });
+    channel.send({ embeds: [member] });
+    channel.send({ embeds: [experienced] });
+    channel.send({ embeds: [mega] });
+    channel.send({ embeds: [colossal] });
+    interaction.reply({ content: 'Requirements sent to channel', ephemeral: true });
   }
 }
