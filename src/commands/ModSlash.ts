@@ -4,14 +4,13 @@ import { Discord, Slash, SlashOption, SlashGroup, ModalComponent, ButtonComponen
 import { ApplicationCommandOptionType } from 'discord-api-types/v10';
 import { Readable } from 'stream';
 import { Archive } from '../types/Mod.js';
-import { recruitFields, megaFields, memberFields, experiencedFields, colossalFields } from '../constants/Embeds.js';
+import { recruitFields, eliteFields, memberFields, experiencedFields } from '../constants/Embeds.js';
 
 const rolesAvailable = [
   { label: 'Recruit', value: 'recruit' },
   { label: 'Member', value: 'member' },
   { label: 'Experienced Member', value: 'experienced' },
   { label: 'Mega Member', value: 'mega' },
-  { label: 'Colossal member', value: 'colossal' },
 ];
 
 const adminBits = PermissionFlagsBits.KickMembers;
@@ -96,10 +95,8 @@ export abstract class ClueSlash {
       fields = memberFields;
     } else if (type == 'experienced') {
       fields = experiencedFields;
-    } else if (type == 'mega') {
-      fields = megaFields;
-    } else if (type == 'colossal') {
-      fields = colossalFields;
+    } else if (type == 'elite') {
+      fields = eliteFields;
     }
     
 
@@ -346,17 +343,13 @@ export abstract class ClueSlash {
     const experienced = new EmbedBuilder()
       .setTitle('**Experienced Member Requirements**')
       .addFields(experiencedFields);
-    const mega = new EmbedBuilder()
-      .setTitle('**Mega Member Requirements**')
-      .addFields(megaFields);
-    const colossal = new EmbedBuilder()
-      .setTitle('**Colossal Member Requirements**')
-      .addFields(colossalFields);
+    const elite = new EmbedBuilder()
+      .setTitle('**Elite Member Requirements**')
+      .addFields(eliteFields);
     channel.send({ embeds: [recruit] });
     channel.send({ embeds: [member] });
     channel.send({ embeds: [experienced] });
-    channel.send({ embeds: [mega] });
-    channel.send({ embeds: [colossal] });
+    channel.send({ embeds: [elite] });
     interaction.reply({ content: 'Requirements sent to channel', ephemeral: true });
   }
 }

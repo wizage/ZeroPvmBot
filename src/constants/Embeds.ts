@@ -66,32 +66,10 @@ export const experiencedFields = [
   ⬥ ${EMOJI_VALUES.Dragon_warhammer} ${EMOJI_VALUES.Bandos_godsword} Dragon Warhammer & Bandos Godsword` },
   { name:'Additional Requirements', value:`
     ⬥ One of the following spec weapons: ${EMOJI_VALUES.Zaryte_crossbow} Zaryte Crossbow ${EMOJI_VALUES.Dragon_claws} Dragon Claws ${EMOJI_VALUES.Voidwaker} Voidwaker
-    ⬥ All Gear requirements from the previous tiers` },
+    ⬥ All Gear requirements from the previous tiers except for direct upgrades` },
 ];
 
-export const megaFields = [
-  { name:'Skills', value:`
-    ⬥ Lvl 90+ ${EMOJI_VALUES.defence} ${EMOJI_VALUES.attack} ${EMOJI_VALUES.strength} ${EMOJI_VALUES.range} ${EMOJI_VALUES.magic} ${EMOJI_VALUES.prayer} ${EMOJI_VALUES.hitpoints} ${EMOJI_VALUES.herblore}` },
-  { name:'Magic', value:`
-  ⬥ ${EMOJI_VALUES.Tumekens_shadow_uncharged} Tumeken's Shadow
-  ⬥ ${EMOJI_VALUES.Imbued_heart} Imbued Heart
-  ⬥ ${EMOJI_VALUES.Virtus_mask} ${EMOJI_VALUES.Ancestral_hat} Virtus or Ancestral Robes` },
-  { name:'Range Gear', value:`
-  ⬥ ${EMOJI_VALUES.Twisted_bow} Twisted Bow
-  ⬥ ${EMOJI_VALUES.Masori_mask} Masori Armour
-  ⬥ ${EMOJI_VALUES.Dragon_arrow_5} Dragon Arrows
-  ⬥ ${EMOJI_VALUES.Black_chinchompa} Black Chinchompas` },
-  { name:'Melee Gear', value:`
-  ⬥ ${EMOJI_VALUES.Scythe_of_vitur} Scythe of Vitur
-  ⬥ ${EMOJI_VALUES.Neitiznot_faceguard} Nezzy Facegaurd
-  ⬥ ${EMOJI_VALUES.Ring_of_suffering} Ring of Suffering
-  ⬥ ${EMOJI_VALUES.Avernic_defender} Avernic Defender` },
-  { name:'Additional Requirements', value:`
-    ⬥ Two of the following spec weapons: ${EMOJI_VALUES.Zaryte_crossbow} Zaryte Crossbow ${EMOJI_VALUES.Dragon_claws} Dragon Claws ${EMOJI_VALUES.Voidwaker} Voidwaker
-    ⬥ All Gear requirements from the previous tiers` },
-];
-
-export const colossalFields = [
+export const eliteFields = [
   { name:'Skills', value:`
     ⬥ Lvl 90+ ${EMOJI_VALUES.defence} ${EMOJI_VALUES.attack} ${EMOJI_VALUES.strength} ${EMOJI_VALUES.range} ${EMOJI_VALUES.magic} ${EMOJI_VALUES.prayer} ${EMOJI_VALUES.hitpoints} ${EMOJI_VALUES.herblore}` },
   { name:'Magic', value:`
@@ -111,6 +89,6 @@ export const colossalFields = [
   ⬥ ${EMOJI_VALUES.Avernic_defender} Avernic Defender
   ⬥ ${EMOJI_VALUES.Infernal_cape} Infernal Cape` },
   { name:'Additional Requirements', value:`
-    ⬥ All of the following spec weapons: ${EMOJI_VALUES.Zaryte_crossbow} Zaryte Crossbow ${EMOJI_VALUES.Dragon_claws} Dragon Claws ${EMOJI_VALUES.Voidwaker} Voidwaker
-    ⬥ All Gear requirements from the previous tiers` },
+    ⬥ 2 of the following spec weapons: ${EMOJI_VALUES.Zaryte_crossbow} Zaryte Crossbow ${EMOJI_VALUES.Dragon_claws} Dragon Claws ${EMOJI_VALUES.Voidwaker} Voidwaker
+    ⬥ All Gear requirements from the previous tiers except for direct upgrades` },
 ];
