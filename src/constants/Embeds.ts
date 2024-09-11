@@ -66,7 +66,7 @@ export const experiencedFields = [
   ⬥ ${EMOJI_VALUES.Dragon_warhammer} ${EMOJI_VALUES.Bandos_godsword} Dragon Warhammer & Bandos Godsword` },
   { name:'Additional Requirements', value:`
     ⬥ One of the following spec weapons: ${EMOJI_VALUES.Zaryte_crossbow} Zaryte Crossbow ${EMOJI_VALUES.Dragon_claws} Dragon Claws ${EMOJI_VALUES.Voidwaker} Voidwaker
-    ⬥ All Gear requirements from Member` },
+    ⬥ All Gear requirements from the previous tiers` },
 ];
 
 export const megaFields = [
@@ -88,7 +88,7 @@ export const megaFields = [
   ⬥ ${EMOJI_VALUES.Avernic_defender} Avernic Defender` },
   { name:'Additional Requirements', value:`
     ⬥ Two of the following spec weapons: ${EMOJI_VALUES.Zaryte_crossbow} Zaryte Crossbow ${EMOJI_VALUES.Dragon_claws} Dragon Claws ${EMOJI_VALUES.Voidwaker} Voidwaker
-    ⬥ All Gear requirements from Member` },
+    ⬥ All Gear requirements from the previous tiers` },
 ];
 
 export const colossalFields = [
@@ -112,5 +112,5 @@ export const colossalFields = [
   ⬥ ${EMOJI_VALUES.Infernal_cape} Infernal Cape` },
   { name:'Additional Requirements', value:`
     ⬥ All of the following spec weapons: ${EMOJI_VALUES.Zaryte_crossbow} Zaryte Crossbow ${EMOJI_VALUES.Dragon_claws} Dragon Claws ${EMOJI_VALUES.Voidwaker} Voidwaker
-    ⬥ All Gear requirements from Member` },
+    ⬥ All Gear requirements from the previous tiers` },
 ];
