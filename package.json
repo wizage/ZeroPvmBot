@@ -39,7 +39,7 @@
     "@discordx/utilities": "^7.0.1",
     "discord-api-types": "^0.37.94",
     "discord.js": "^14.16.1",
-    "discordx": "^11.12.0",
+    "discordx": "^11.12.1",
     "dotenv": "^16.4.5"
   },
   "devDependencies": {
