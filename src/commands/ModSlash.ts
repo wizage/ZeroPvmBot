@@ -322,7 +322,7 @@ export abstract class ClueSlash {
     
   }
 
-  @Slash({ name: 'requirements-update', description: 'Write the requirements to a channel' })
+  @Slash({ name: 'requirement-update', description: 'Write the requirements to a channel' })
   @SlashGroup('mod')
   async setupRequirements(
     @SlashOption({
