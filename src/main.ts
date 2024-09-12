@@ -31,12 +31,8 @@ export class Main {
       // );
 
       await this._client.initApplicationCommands();
-      await this._client.applicationCommandSlashes[0].options.forEach((option) => {
-        console.log(`>> Loaded command: ${option.name}`);
-      });
 
-      this._client.user?.setActivity('Welcome to ZerO PvM (Old School)');
-
+      await this._client.user?.setActivity('Welcome to ZerO PvM (Old School)');
 
       console.log('>> Bot started');
     });
@@ -46,7 +42,7 @@ export class Main {
       this._client.applicationCommandSlashes[0].options.forEach((option) => {
         console.log(`>> Loaded command: ${option.name}`);
       });
-      
+
       //Your other stuff like adding to guildArray
     });
 
