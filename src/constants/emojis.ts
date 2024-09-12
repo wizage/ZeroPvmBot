@@ -136,4 +136,4 @@ export const EMOJI_VALUES_PROD: Record<string, string> = {
   Bandos_godsword: '<:Bandos_godsword:1283534105421676596>',
 };
 
-export const EMOJI_VALUES = (process.env.PROD && process.env.PROD !== '0') ? EMOJI_VALUES_PROD : EMOJI_VALUES_DEV;
+export const EMOJI_VALUES = (process.env.PROD && process.env.PROD !== '0') ? EMOJI_VALUES_DEV  : EMOJI_VALUES_PROD;
