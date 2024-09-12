@@ -41,6 +41,15 @@ export class Main {
       console.log('>> Bot started');
     });
 
+    this._client.on('guildCreate', guild => {
+      console.log('Joined a new guild: ' + guild.name);
+      this._client.applicationCommandSlashes[0].options.forEach((option) => {
+        console.log(`>> Loaded command: ${option.name}`);
+      });
+      
+      //Your other stuff like adding to guildArray
+    });
+
     this._client.on('interactionCreate', (interaction) => {
       this._client.executeInteraction(interaction);
     });
