@@ -25,13 +25,18 @@ export class Main {
     this._client.once('ready', async () => {
       // An example of how guild commands can be cleared
       //
+
       // await this._client.clearApplicationCommands(
-      //   ...this._client.guilds.cache.map((guild) => guild.id)
+      //   ...this._client.guilds.cache.map((guild) => guild.id),
       // );
 
       await this._client.initApplicationCommands();
+      await this._client.applicationCommandSlashes[0].options.forEach((option) => {
+        console.log(`>> Loaded command: ${option.name}`);
+      });
 
       this._client.user?.setActivity('Welcome to ZerO PvM (Old School)');
+
 
       console.log('>> Bot started');
     });

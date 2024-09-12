@@ -17,7 +17,7 @@ const adminBits = PermissionFlagsBits.KickMembers;
 
 @Discord()
 @SlashGroup({ name: 'mod', description: 'Commands for oyster competition', defaultMemberPermissions: adminBits })
-export abstract class ClueSlash {
+export abstract class ModSlash {
 
   @ModalComponent({ id:/(setupappchannel-*)\S+/ })
   async setupappchannel(interaction: ModalSubmitInteraction): Promise<void> {
