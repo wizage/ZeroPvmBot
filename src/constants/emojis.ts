@@ -1,4 +1,4 @@
-export const EMOJI_VALUES_DEV: Record<string, string> = {
+export const EMOJI_VALUES_PROD: Record<string, string> = {
   fireCape:'<:Fire_cape:1281502411915132968>',
   neitz:'<:Helm_of_neitiznot:1281502399743262752>',
   torso:'<:Fighter_torso:1281502387927912478>',
@@ -67,7 +67,7 @@ export const EMOJI_VALUES_DEV: Record<string, string> = {
   Bandos_godsword: '<:Bandos_godsword:1283533882066735146>',
 };
 
-export const EMOJI_VALUES_PROD: Record<string, string> = {
+export const EMOJI_VALUES_DEV: Record<string, string> = {
   fireCape:'<:Fire_cape:1283105407002345504>',
   neitz:'<:Helm_of_neitiznot:1283105423968305182>',
   torso:'<:Fighter_torso:1283105438681796638>',
