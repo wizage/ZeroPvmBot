@@ -10,7 +10,7 @@ const rolesAvailable = [
   { label: 'Recruit', value: 'recruit' },
   { label: 'Member', value: 'member' },
   { label: 'Experienced Member', value: 'experienced' },
-  { label: 'Mega Member', value: 'mega' },
+  { label: 'Elite Member', value: 'elite' },
 ];
 
 const adminBits = PermissionFlagsBits.KickMembers;
