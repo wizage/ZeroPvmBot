@@ -172,7 +172,17 @@ export abstract class ModSlash {
     if (fileArray.length > 0) {
       await approveThread.send({ files: fileArray });
     }
-    await user?.send({ content: `You have been approved for ${roleLabel} by <@${interaction.user.id}>` });
+
+    const message = `Hello and Welcome to Zer0 PvM, your application has been accepted for ${roleLabel}!
+
+Someone should be trying to find you right now to invite you ingame.
+If you think it's taking too long just ask for an invite in the clan chat, or tag a @ Staff Member in your application on discord.
+
+I have already given you your rank on the Zer0 PvM Discord, and you should be able to see and use other channels now."                                                                                                    
+Check out our useful servers channel!: <#1230517504204345483>                                                                                                    
+Reminder: Our clan is actively looking to grow! Feel free to invite any friends who may be interested to the Discord!                                                                                                    
+To avoid being kicked and having to re-apply, log in occasionally and do something ingame, or notify us if you plan on going inactive for more than a few weeks.`;
+    await user?.send({ content: message });
     await interaction.followUp({ content: `Role ${roleLabel} added to ${user!.displayName}`, ephemeral: true });
     await interaction.channel?.delete();
     return;
