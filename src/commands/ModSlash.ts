@@ -58,12 +58,15 @@ export abstract class ModSlash {
     const user = interaction.user;
     let parentCategory = '';
     let leadershipRole = '';
+    let staffRole = '';
     if (guild!.id == '1230517503554486362') {
       parentCategory = '1230517505815216260';
       leadershipRole = '1230517503772590110';
+      staffRole = '1230517503659212879';
     } else if (guild!.id == '1281481181828747318') {// Test server
       parentCategory = '1281481495818666015';
       leadershipRole = '1281498522830508032';
+      staffRole = '';
     }
 
     const newChannel = await guild?.channels.create({
@@ -82,6 +85,10 @@ export abstract class ModSlash {
         },
         {
           id: leadershipRole,
+          allow: [PermissionsBitField.Flags.SendMessages, PermissionsBitField.Flags.ViewChannel],
+        },
+        {
+          id: staffRole,
           allow: [PermissionsBitField.Flags.SendMessages, PermissionsBitField.Flags.ViewChannel],
         },
         //Add council eventually
