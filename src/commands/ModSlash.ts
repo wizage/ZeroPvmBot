@@ -56,6 +56,7 @@ export abstract class ModSlash {
     let guild = await interaction.guild?.fetch();
     const type = interaction.values?.[0];
     const user = interaction.user;
+    const guildMember = guild!.members.cache.get(user.id);
     let parentCategory = '';
     let leadershipRole = '';
     let staffRole = '';
@@ -66,11 +67,11 @@ export abstract class ModSlash {
     } else if (guild!.id == '1281481181828747318') {// Test server
       parentCategory = '1281481495818666015';
       leadershipRole = '1281498522830508032';
-      staffRole = '';
+      staffRole = '1285998324968853598';
     }
-
+    const displayname = guildMember?.nickname || user.displayName;
     const newChannel = await guild?.channels.create({
-      name: `${user.username}-application`,
+      name: `${displayname}-application`,
       type: ChannelType.GuildText,
       parent: parentCategory,
       permissionOverwrites:
@@ -105,13 +106,15 @@ export abstract class ModSlash {
     } else if (type == 'elite') {
       fields = eliteFields;
     }
+    let typeLabel = rolesAvailable.find((roleObj) => roleObj.value == type)?.label;
     
-
     const ticket = new EmbedBuilder()
-      .setTitle(`**Application for ${user.username}**`)
+      .setTitle(`**Application for ${displayname} for ${typeLabel}**`)
       .setDescription(`Hello <@${user.id}>! Please review the requirements below and upload a screenshot of your skills and gear! \n \n__Requirements__:`)
       .addFields(fields);
     await newChannel!.send({ embeds: [ticket] });
+    await interaction.followUp({ content: `You applied for ${typeLabel}, your ticket can be found here: <#${newChannel?.id}>`, ephemeral: true });
+    await user.send({ content: `You applied for ${typeLabel}, your ticket can be found here: <#${newChannel?.id}>` });
   }
 
   @Slash({ name: 'setup-app-channel', description: 'Setup Application Channel' })
